@@ -1,0 +1,40 @@
+ERROS JPA.
+
+- ERROR: Exception in thread "main" org.hibernate.service.spi.ServiceException: Unable to create requested service [org.hibernate.engine.jdbc.env.spi.JdbcEnvironment]
+
+Solução:
+Configurar o caminho (value) do Driver do conector SQL (jar) conforme o caminho da biblioteca:
+persistence.xml
+<property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/> <!-- Caminho do conector do mysql -->
+
+
+- ERRO:error release version 5 not supported - Pesquisa Google
+Solução:
+File -> Settings -> 
+	Build,Execution,Deployment -> 
+	Compiler -> Java Compiler -> 
+	Project bytecode version: alterar para 6 em diante
+
+
+- ERROR: The server time zone value 'Hora oficial do Brasil' is unrecognized or represents more than one time zone. You must configure either the server or JDBC driver (via the serverTimezone configuration property) to use a more specifc time zone value if you want to utilize time zone support. Exception in thread "main" org.hibernate.service.spi.ServiceException: Unable to create requested service [org.hibernate.engine.jdbc.env.spi.JdbcEnvironment] at org.hibernate.service.internal.AbstractServiceRegistryImpl.createService(AbstractServiceRegistryImpl.java:275) Caused by: org.hibernate.exception.GenericJDBCException: Error calling Driver#connect
+Solução: 
+pom.xml
+Alterar versão do SQL: 5.1.48
+
+persistence.xml
+Alterar value="com.mysql.jdbc.Driver" /> para value="com.mysql.cj.jdbc.Driver"
+
+
+
+- ERROR: Caused by: com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'type=MyISAM' at line 5 at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method) at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62) at java.base/jdk.internal.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+persistence.xml
+Solução:
+Alterar
+<property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect"/>
+para
+<property name="hibernate.dialect" value="org.hibernate.dialect.MySQL55Dialect"/>
+
+ou
+org.hibernate.dialect.MySQL5Dialect
+org.hibernate.dialect.MySQL55Dialect
+org.hibernate.dialect.MySQL57Dialect 
