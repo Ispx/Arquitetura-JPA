@@ -38,3 +38,6 @@ ou
 org.hibernate.dialect.MySQL5Dialect
 org.hibernate.dialect.MySQL55Dialect
 org.hibernate.dialect.MySQL57Dialect 
+
+
+

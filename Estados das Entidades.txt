@@ -1,0 +1,24 @@
+Estados de uma entidade (entity)
+
+
+
+// Transient
+EntityManage.getTransition().begin();
+
+// Managed
+
+EntityManage.close();
+// Detached
+
+
+Managed
+Todos os objetos que estão dentro de uma transação aberta
+estão no estado Managed (gerenciado).
+Objetos neste estado apontam para um endereço da memória do banco de dados objeto que sicroniza os dados diante de qualquer alteraçãp
+idenpendete do objeto que lhe referencie.
+
+
+Detached/transient
+Todos os objetos fora de um escopo de trasação aberta, ou sejá estão dentro de um escopo de transação fechada
+estão no estado Detached ou Transient.
+Objetos neste estado não vinculo com o banco de dados, ou sejá não apontam para um endereço do banco de dados.
